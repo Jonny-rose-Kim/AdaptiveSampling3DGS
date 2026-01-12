@@ -64,6 +64,7 @@ if not args.skip_matching:
     if exit_code != 0:
         logging.error(f"Mapper failed with code {exit_code}. Exiting.")
         exit(exit_code)
+        # 아 아아아아아ㅏㅇ아아아
 
 ### Image undistortion
 ## We need to undistort our images into ideal pinhole intrinsics.

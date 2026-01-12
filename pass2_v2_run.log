@@ -1,0 +1,117 @@
+INFO:adaptive_sampling.pipeline:Pipeline initialized
+INFO:adaptive_sampling.pipeline:  Video: /home/jonny/jonny/Adaptive-ffmpeg/Museum_cut.mp4
+INFO:adaptive_sampling.pipeline:  FPS: 29.97
+INFO:adaptive_sampling.pipeline:  Duration: 120.15s
+INFO:adaptive_sampling.pipeline:  Workspace: /home/jonny/jonny/Adaptive-ffmpeg/data/Museum_cut_exp
+INFO:adaptive_sampling.pipeline:
+============================================================
+INFO:adaptive_sampling.pipeline:Trajectory Analysis & Adaptive Sampling
+INFO:adaptive_sampling.pipeline:============================================================
+INFO:adaptive_sampling.pipeline:
+[1/4] Parsing COLMAP output...
+INFO:adaptive_sampling.pipeline:  Parsed 240 camera poses (using fps=2.00)
+INFO:adaptive_sampling.pipeline:
+[2/4] Analyzing camera trajectory...
+INFO:adaptive_sampling.pipeline:  Total segments: 239
+INFO:adaptive_sampling.pipeline:  Translation: mean=0.218, std=0.062
+INFO:adaptive_sampling.pipeline:  Rotation: mean=4.26°, std=2.51°
+INFO:adaptive_sampling.pipeline:  Total score: 141.486
+INFO:adaptive_sampling.pipeline:
+[3/4] Identifying sparse regions...
+INFO:adaptive_sampling.pipeline:  Found 0 sparse region(s)
+INFO:adaptive_sampling.pipeline:
+[4/4] Computing adaptive timestamps...
+INFO:adaptive_sampling.pipeline:  Computed 240 base timestamps
+INFO:adaptive_sampling.pipeline:  No sparse regions - using base timestamps only
+INFO:adaptive_sampling.pipeline:
+Final: 240 timestamps
+INFO:adaptive_sampling.pipeline:  Time range: 0.50s - 120.00s
+INFO:adaptive_sampling.pipeline:  Saved timestamps to /home/jonny/jonny/Adaptive-ffmpeg/data/Museum_cut_exp/adaptive_timestamps.json
+INFO:adaptive_sampling.pipeline:
+============================================================
+INFO:adaptive_sampling.pipeline:PASS 2: Adaptive Frame Re-extraction
+INFO:adaptive_sampling.pipeline:============================================================
+INFO:adaptive_sampling.pipeline:
+Extracting 240 frames by timestamps...
+INFO:adaptive_sampling.frame_extractor:Extracting 240 frames by timestamps
+INFO:adaptive_sampling.frame_extractor:  Extracted 10/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 20/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 30/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 40/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 50/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 60/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 70/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 80/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 90/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 100/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 110/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 120/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 130/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 140/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 150/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 160/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 170/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 180/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 190/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 200/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 210/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 220/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 230/240 frames
+INFO:adaptive_sampling.frame_extractor:  Extracted 240/240 frames
+INFO:adaptive_sampling.frame_extractor:Extraction completed: 240/240 successful
+INFO:adaptive_sampling.pipeline:  Successfully extracted 240 frames
+INFO:adaptive_sampling.pipeline:  Output directory: /home/jonny/jonny/Adaptive-ffmpeg/data/Museum_cut_exp/pass2/images
+
+======================================================================
+Pass 2: Adaptive Sampling
+======================================================================
+
+로드된 설정:
+  비디오: /home/jonny/jonny/Adaptive-ffmpeg/Museum_cut.mp4
+  Pass 1 프레임: 240개
+  목표 프레임: 240개
+  감소율: 0.0%
+
+✅ COLMAP 출력 확인: /home/jonny/jonny/Adaptive-ffmpeg/data/Museum_cut_exp/pass1/sparse/0/images.txt
+
+[1/2] Trajectory 분석 및 Adaptive Sampling...
+  COLMAP 파싱 fps: 2.00 (Pass1 추출 fps)
+  Adaptive Sampler fps: 29.97 (원본 비디오 fps)
+
+분석 결과:
+  파싱된 카메라: 240개
+  총 세그먼트: 239
+  Translation 평균: 0.218m
+  Rotation 평균: 4.26°
+  계산된 timestamp: 240개
+
+[2/2] Adaptive 프레임 재추출...
+
+======================================================================
+✅ Pass 2 완료!
+======================================================================
+
+결과 요약:
+  Pass 1 프레임: 240개
+  Pass 2 프레임: 240개
+  감소율: 0.0%
+
+출력 위치:
+  Pass 1: /home/jonny/jonny/Adaptive-ffmpeg/data/Museum_cut_exp/pass1/input/
+  Pass 2: /home/jonny/jonny/Adaptive-ffmpeg/data/Museum_cut_exp/pass2/images/
+  Timestamps: /home/jonny/jonny/Adaptive-ffmpeg/data/Museum_cut_exp/adaptive_timestamps.json
+  결과: /home/jonny/jonny/Adaptive-ffmpeg/data/Museum_cut_exp/pipeline_result.json
+
+======================================================================
+다음 단계: 3DGS 학습
+======================================================================
+
+Baseline (Pass 1):
+  python train.py -s /home/jonny/jonny/Adaptive-ffmpeg/data/Museum_cut_exp/pass1
+
+Adaptive (Pass 2):
+  python train.py -s /home/jonny/jonny/Adaptive-ffmpeg/data/Museum_cut_exp/pass2
+
+품질 비교:
+  python render.py -m <모델_경로>
+  python metrics.py -m <모델_경로>
