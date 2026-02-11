@@ -18,7 +18,7 @@ class CameraPose:
     image_id: int
     qw: float  # quaternion w (real part)
     qx: float  # quaternion x
-    qy: float  # quaternion y
+    qy: float  # quaternion yc
     qz: float  # quaternion z
     tx: float  # translation x
     ty: float  # translation y
